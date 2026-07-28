@@ -1,0 +1,10 @@
+schema_version: 1
+updated_at: "2026-07-28T17:48:14+08:00"
+
+entries:
+  - id: "idea-storm-lab-portfolio"
+    title: "Idea Storm Lab"
+    type: "portfolio-page"
+    path: "../../../../idea-storm-lab.html"
+    source_event: "2026-07-28-1408-UX-001"
+    confirmation: "completion-approved"

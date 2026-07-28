@@ -1,0 +1,26 @@
+schema_version: 1
+event_id: "2026-07-28-1408-UX-001"
+title: "Idea Storm Lab portfolio menu and page"
+sealed_at: "2026-07-28T17:48:14+08:00"
+source_state: "../../../work-items/2026-07-28-1408-UX-001-idea-storm-lab-portfolio-page/STATE.md"
+excluded:
+  - "yudi-ailab-static-mirror.zip"
+
+snapshot:
+  root: "snapshot/"
+  files:
+    - "snapshot/idea-storm-lab.html"
+    - "snapshot/index.html"
+    - "snapshot/designharness-agent-mineral-light.html"
+    - "snapshot/assets/idea-storm-lab/01-login.png"
+    - "snapshot/assets/idea-storm-lab/02-write-and-analyze.png"
+    - "snapshot/assets/idea-storm-lab/03-analysis-result.png"
+    - "snapshot/assets/idea-storm-lab/04-business-canvas.png"
+    - "snapshot/assets/idea-storm-lab/05-inspiration-wall.png"
+    - "snapshot/assets/idea-storm-lab/06-direction-induction.png"
+    - "snapshot/assets/idea-storm-lab/ANALYSIS_SKILL.public.zh-CN.md"
+    - "snapshot/assets/idea-storm-lab/STATE.zh-CN.md"
+    - "snapshot/docs/design/VISUAL_DESIGN.md"
+    - "snapshot/docs/design/work-items/2026-07-28-1408-UX-001-idea-storm-lab-portfolio-page/REFERENCE_SELECTION.md"
+    - "snapshot/docs/design/work-items/2026-07-28-1408-UX-001-idea-storm-lab-portfolio-page/STATE.md"
+    - "snapshot/docs/design/work-items/2026-07-28-1408-UX-001-idea-storm-lab-portfolio-page/review.md"

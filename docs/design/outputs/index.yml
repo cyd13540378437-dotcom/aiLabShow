@@ -1,0 +1,18 @@
+schema_version: 1
+updated_at: "2026-07-28T17:48:14+08:00"
+
+current:
+  - id: "idea-storm-lab-portfolio"
+    title: "Idea Storm Lab portfolio page"
+    type: "entry-point"
+    path: "current/index.yml"
+    source_event: "2026-07-28-1408-UX-001"
+    status: "user-confirmed"
+
+archive:
+  - event_id: "2026-07-28-1408-UX-001"
+    title: "Idea Storm Lab portfolio menu and page"
+    path: "archive/2026-07-28-1408-UX-001/"
+    source_state: "../work-items/2026-07-28-1408-UX-001-idea-storm-lab-portfolio-page/STATE.md"
+    status: "sealed"
+    sealed_at: "2026-07-28T17:48:14+08:00"

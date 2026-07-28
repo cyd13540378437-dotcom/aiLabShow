@@ -1,0 +1,2771 @@
+<!doctype html>
+<html lang="zh-CN" id="top">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Idea Storm Lab：面向早期创业团队的邀请制 AI 脑暴与方向归纳空间。"
+    />
+    <title>Idea Storm Lab | 宇迪的 AI 产品实验室</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #dce3dc;
+        --paper: #eef1ec;
+        --paper-soft: #e5ebe5;
+        --paper-raised: #f3f5f0;
+        --ink: #111713;
+        --muted: #4e5b53;
+        --quiet: #78837a;
+        --line: rgba(17, 23, 19, 0.12);
+        --line-strong: rgba(17, 23, 19, 0.24);
+        --accent: #286b58;
+        --accent-deep: #1e4f43;
+        --pin: #a96043;
+        --note: #f4dda0;
+        --blueprint: #dbe5e8;
+        --radius-sm: 6px;
+        --radius-md: 8px;
+        --max: 1240px;
+        --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+        --sans: "Avenir Next", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+        --display: "Avenir Next", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        background:
+          linear-gradient(rgba(17, 23, 19, 0.035) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(17, 23, 19, 0.025) 1px, transparent 1px),
+          var(--bg);
+        background-size: 40px 40px, 40px 40px, auto;
+        color: var(--ink);
+        font-family: var(--sans);
+        font-size: 16px;
+        letter-spacing: 0;
+      }
+
+      body::selection {
+        background: rgba(40, 107, 88, 0.22);
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      button,
+      a,
+      summary {
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      button {
+        color: inherit;
+        font: inherit;
+      }
+
+      a:focus-visible,
+      button:focus-visible,
+      summary:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 3px;
+      }
+
+      h1,
+      h2,
+      h3,
+      p,
+      figure,
+      dl,
+      dd {
+        margin: 0;
+      }
+
+      h1,
+      h2,
+      h3 {
+        font-family: var(--display);
+        font-weight: 600;
+      }
+
+      p {
+        font-size: 17px;
+        line-height: 1.75;
+      }
+
+      .site-shell {
+        min-height: 100svh;
+        isolation: isolate;
+      }
+
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        border-bottom: 1px solid var(--line);
+        background: rgba(220, 227, 220, 0.92);
+        backdrop-filter: blur(18px);
+      }
+
+      .header-inner {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        align-items: center;
+        width: 100%;
+        gap: 28px;
+        padding: 14px 24px;
+      }
+
+      .header-left,
+      .header-right {
+        display: flex;
+        align-items: center;
+        min-width: 0;
+      }
+
+      .header-left {
+        gap: 22px;
+      }
+
+      .header-right {
+        justify-content: flex-end;
+      }
+
+      .site-brand {
+        position: relative;
+        display: inline-flex;
+        flex: 0 0 246px;
+        align-items: center;
+        min-width: 0;
+        padding: 4px 18px 6px 0;
+      }
+
+      .site-brand::before {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 58px;
+        height: 2px;
+        background: var(--accent);
+        content: "";
+      }
+
+      .site-brand::after {
+        position: absolute;
+        top: 8px;
+        right: 0;
+        bottom: 8px;
+        width: 1px;
+        background: var(--line-strong);
+        content: "";
+      }
+
+      .site-brand-title {
+        display: block;
+        overflow: hidden;
+        font-size: 17px;
+        font-weight: 600;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .site-brand-subtitle {
+        display: block;
+        margin-top: 3px;
+        color: var(--quiet);
+        font-family: var(--mono);
+        font-size: 11px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .project-switcher {
+        position: relative;
+        flex: 0 0 auto;
+      }
+
+      .project-switcher summary {
+        display: inline-flex;
+        align-items: center;
+        min-width: 306px;
+        min-height: 44px;
+        gap: 10px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: rgba(243, 245, 240, 0.82);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5);
+        padding: 5px 7px 5px 6px;
+        cursor: pointer;
+        list-style: none;
+        transition: border-color 160ms ease, background 160ms ease, box-shadow 160ms ease;
+      }
+
+      .project-switcher summary:hover {
+        border-color: rgba(40, 107, 88, 0.3);
+        background: rgba(243, 245, 240, 0.96);
+        box-shadow:
+          inset 0 1px 0 rgba(255, 255, 255, 0.56),
+          0 8px 24px rgba(17, 23, 19, 0.04);
+      }
+
+      .project-switcher summary::-webkit-details-marker,
+      .mobile-nav summary::-webkit-details-marker {
+        display: none;
+      }
+
+      .project-mark {
+        display: grid;
+        flex: 0 0 32px;
+        width: 32px;
+        height: 32px;
+        place-items: center;
+        border: 1px solid var(--line-strong);
+        border-radius: 999px;
+        background: var(--note);
+        color: var(--ink);
+        font-family: var(--mono);
+        font-size: 11px;
+        font-weight: 800;
+      }
+
+      .project-current {
+        display: block;
+        flex: 1 1 auto;
+        min-width: 0;
+      }
+
+      .project-current strong {
+        display: block;
+        overflow: hidden;
+        font-size: 15px;
+        font-weight: 600;
+        line-height: 1;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .project-chevron {
+        display: grid;
+        flex: 0 0 30px;
+        width: 30px;
+        height: 30px;
+        place-items: center;
+        border: 1px solid rgba(40, 107, 88, 0.22);
+        border-radius: 999px;
+        background: rgba(40, 107, 88, 0.08);
+        color: var(--accent-deep);
+        font-family: var(--mono);
+        font-size: 13px;
+        font-weight: 800;
+        transition: background 160ms ease, transform 160ms ease;
+      }
+
+      .project-switcher[open] .project-chevron {
+        background: rgba(40, 107, 88, 0.14);
+        transform: rotate(180deg);
+      }
+
+      .project-menu {
+        position: absolute;
+        top: calc(100% + 8px);
+        left: 0;
+        z-index: 70;
+        display: grid;
+        width: 336px;
+        gap: 4px;
+        border: 1px solid var(--line-strong);
+        border-radius: var(--radius-md);
+        background: rgba(238, 241, 236, 0.98);
+        box-shadow: 0 20px 50px rgba(17, 23, 19, 0.1);
+        padding: 8px;
+      }
+
+      .project-menu a {
+        display: grid;
+        gap: 3px;
+        border-radius: var(--radius-sm);
+        padding: 10px 11px;
+      }
+
+      .project-menu a:hover {
+        background: rgba(229, 235, 229, 0.92);
+      }
+
+      .project-menu strong {
+        font-size: 14px;
+        font-weight: 600;
+      }
+
+      .project-menu span {
+        color: var(--quiet);
+        font-size: 12px;
+        line-height: 1.45;
+      }
+
+      .project-menu .is-active {
+        background: rgba(40, 107, 88, 0.1);
+      }
+
+      .mobile-nav {
+        display: none;
+        position: relative;
+      }
+
+      .mobile-nav summary {
+        min-height: 40px;
+        border: 1px solid var(--line-strong);
+        border-radius: var(--radius-sm);
+        background: var(--paper-raised);
+        padding: 9px 12px;
+        cursor: pointer;
+        font-size: 13px;
+        font-weight: 600;
+        list-style: none;
+      }
+
+      .mobile-panel {
+        position: absolute;
+        top: calc(100% + 8px);
+        right: 0;
+        display: grid;
+        width: 176px;
+        border: 1px solid var(--line-strong);
+        border-radius: var(--radius-md);
+        background: rgba(238, 241, 236, 0.98);
+        box-shadow: 0 18px 40px rgba(17, 23, 19, 0.1);
+        padding: 8px;
+      }
+
+      .mobile-panel a {
+        border-radius: var(--radius-sm);
+        padding: 9px 10px;
+        font-size: 13px;
+      }
+
+      .mobile-panel a:hover {
+        background: var(--paper-soft);
+      }
+
+      .anchor-rail {
+        position: fixed;
+        top: clamp(116px, 30vh, 260px);
+        right: 34px;
+        z-index: 35;
+        display: grid;
+        width: 146px;
+        gap: 4px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius-md);
+        background: rgba(238, 241, 236, 0.84);
+        box-shadow: 0 18px 50px rgba(17, 23, 19, 0.06);
+        padding: 12px 10px;
+        backdrop-filter: blur(18px);
+      }
+
+      .anchor-rail::before {
+        margin-bottom: 4px;
+        border-bottom: 1px solid var(--line);
+        padding: 1px 7px 9px;
+        color: var(--quiet);
+        content: "PAGE INDEX";
+        font-family: var(--mono);
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+      }
+
+      .anchor-rail a {
+        display: grid;
+        grid-template-columns: 22px 1fr;
+        align-items: center;
+        min-height: 32px;
+        border-radius: var(--radius-sm);
+        padding: 6px 7px;
+        color: var(--muted);
+        font-size: 12px;
+        transition: background 140ms ease, color 140ms ease;
+      }
+
+      .anchor-rail a::before {
+        color: var(--quiet);
+        content: attr(data-index);
+        font-family: var(--mono);
+        font-size: 9px;
+      }
+
+      .anchor-rail a:hover,
+      .anchor-rail a.is-active {
+        background: rgba(40, 107, 88, 0.1);
+        color: var(--ink);
+      }
+
+      .anchor-rail a.is-active::before {
+        color: var(--accent);
+      }
+
+      .container {
+        width: min(calc(100% - 48px), var(--max));
+        margin: 0 auto;
+      }
+
+      .hero {
+        position: relative;
+        width: min(calc(100% - 48px), 1440px);
+        height: min(700px, 66svh);
+        min-height: 540px;
+        margin: 24px auto 0;
+        overflow: hidden;
+        border: 1px solid var(--line-strong);
+        border-radius: var(--radius-md);
+        background:
+          linear-gradient(rgba(17, 23, 19, 0.045) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(17, 23, 19, 0.035) 1px, transparent 1px),
+          var(--paper-raised);
+        background-size: 32px 32px, 32px 32px, auto;
+        box-shadow: 8px 10px 0 rgba(17, 23, 19, 0.08);
+      }
+
+      .hero::before {
+        position: absolute;
+        top: 42px;
+        right: 54px;
+        width: 132px;
+        height: 20px;
+        border: 1px solid rgba(17, 23, 19, 0.12);
+        background: rgba(244, 221, 160, 0.64);
+        content: "";
+        transform: rotate(1.5deg);
+      }
+
+      .hero::after {
+        position: absolute;
+        right: 4%;
+        bottom: -72px;
+        color: rgba(40, 107, 88, 0.07);
+        content: "IS";
+        font-family: var(--mono);
+        font-size: 320px;
+        font-weight: 800;
+        line-height: 1;
+        pointer-events: none;
+      }
+
+      .hero-copy {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        width: 100%;
+        height: 100%;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 58px 72px 54px;
+      }
+
+      .hero-topline {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 24px;
+      }
+
+      .hero-version {
+        margin-top: 8px;
+        color: var(--quiet);
+        font-family: var(--mono);
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .hero-kicker,
+      .section-kicker,
+      .stage-index,
+      .fact-label,
+      .release-version,
+      .system-label {
+        font-family: var(--mono);
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .hero-kicker {
+        display: inline-flex;
+        align-items: center;
+        align-self: flex-start;
+        gap: 9px;
+        border-bottom: 1px solid var(--line-strong);
+        padding-bottom: 8px;
+        color: var(--accent-deep);
+      }
+
+      .hero-kicker::before {
+        display: grid;
+        width: 28px;
+        height: 28px;
+        place-items: center;
+        border: 1px solid var(--line-strong);
+        border-radius: 3px;
+        background: var(--note);
+        color: var(--ink);
+        content: "IS";
+        font-size: 10px;
+      }
+
+      .hero h1 {
+        max-width: none;
+        font-size: 96px;
+        line-height: 0.9;
+        white-space: nowrap;
+      }
+
+      .hero-statement {
+        max-width: 27ch;
+        margin-top: 24px;
+        font-size: 26px;
+        font-weight: 600;
+        line-height: 1.45;
+      }
+
+      .hero-meta {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        width: min(760px, 68%);
+        border-top: 1px solid var(--line-strong);
+      }
+
+      .hero-meta div {
+        min-width: 0;
+        padding: 14px 12px 0 0;
+      }
+
+      .hero-meta div + div {
+        border-left: 1px solid var(--line);
+        padding-left: 14px;
+      }
+
+      .hero-meta dt {
+        color: var(--quiet);
+        font-family: var(--mono);
+        font-size: 9px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      .hero-meta dd {
+        margin-top: 5px;
+        font-size: 13px;
+        font-weight: 600;
+        line-height: 1.35;
+      }
+
+      .section-band {
+        scroll-margin-top: 84px;
+        border-top: 1px solid var(--line);
+        padding: 104px 0;
+      }
+
+      .section-band:first-of-type {
+        border-top: 0;
+      }
+
+      .section-heading {
+        display: grid;
+        grid-template-columns: minmax(0, 0.72fr) minmax(360px, 1.28fr);
+        align-items: start;
+        gap: 64px;
+        margin-bottom: 64px;
+      }
+
+      .section-kicker {
+        display: block;
+        margin-bottom: 18px;
+        color: var(--accent-deep);
+      }
+
+      .section-heading h2 {
+        max-width: 12ch;
+        font-size: 52px;
+        line-height: 1.04;
+      }
+
+      .section-heading > p {
+        max-width: 42em;
+        color: var(--muted);
+        font-size: 19px;
+        line-height: 1.85;
+      }
+
+      .premise-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+        gap: 48px;
+        border-top: 1px solid var(--line-strong);
+        border-bottom: 1px solid var(--line-strong);
+      }
+
+      .premise-quote {
+        padding: 48px 48px 48px 0;
+      }
+
+      .premise-quote p {
+        max-width: 20ch;
+        font-size: 34px;
+        font-weight: 600;
+        line-height: 1.35;
+      }
+
+      .premise-quote p em {
+        color: var(--accent);
+        font-style: normal;
+      }
+
+      .premise-facts {
+        display: grid;
+        border-left: 1px solid var(--line-strong);
+      }
+
+      .premise-facts article {
+        display: grid;
+        grid-template-columns: 108px 1fr;
+        gap: 22px;
+        padding: 24px 0 24px 32px;
+      }
+
+      .premise-facts article + article {
+        border-top: 1px solid var(--line);
+      }
+
+      .fact-label {
+        color: var(--quiet);
+      }
+
+      .premise-facts h3 {
+        margin-bottom: 8px;
+        font-size: 20px;
+      }
+
+      .premise-facts p {
+        color: var(--muted);
+        font-size: 15px;
+        line-height: 1.65;
+      }
+
+      .loop-map {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        margin-bottom: 44px;
+        border-top: 1px solid var(--line-strong);
+        border-bottom: 1px solid var(--line-strong);
+      }
+
+      .loop-map a {
+        display: grid;
+        min-height: 122px;
+        align-content: space-between;
+        gap: 18px;
+        padding: 20px;
+        transition: background 150ms ease;
+      }
+
+      .loop-map a + a {
+        border-left: 1px solid var(--line);
+      }
+
+      .loop-map a:hover {
+        background: rgba(40, 107, 88, 0.07);
+      }
+
+      .loop-map span {
+        color: var(--quiet);
+        font-family: var(--mono);
+        font-size: 10px;
+      }
+
+      .loop-map strong {
+        font-size: 18px;
+        line-height: 1.35;
+      }
+
+      .stage-list {
+        display: grid;
+        gap: 88px;
+      }
+
+      .stage {
+        display: grid;
+        grid-template-columns: 200px minmax(0, 1fr);
+        align-items: start;
+        gap: 44px;
+      }
+
+      .stage-copy {
+        position: sticky;
+        top: 110px;
+        border-top: 3px solid var(--accent);
+        padding-top: 18px;
+      }
+
+      .stage-index {
+        display: block;
+        margin-bottom: 22px;
+        color: var(--quiet);
+      }
+
+      .stage-copy h3 {
+        margin-bottom: 12px;
+        font-size: 28px;
+        line-height: 1.15;
+      }
+
+      .stage-copy p {
+        color: var(--muted);
+        font-size: 15px;
+        line-height: 1.7;
+      }
+
+      .shot-stack {
+        display: grid;
+        gap: 22px;
+      }
+
+      .shot-frame {
+        position: relative;
+        overflow: hidden;
+        border: 1px solid var(--line-strong);
+        border-radius: var(--radius-sm);
+        background: var(--paper-raised);
+        box-shadow: 7px 8px 0 rgba(17, 23, 19, 0.08);
+      }
+
+      .shot-frame::before {
+        position: absolute;
+        top: -1px;
+        left: 50%;
+        z-index: 2;
+        width: 92px;
+        height: 18px;
+        border-right: 1px solid rgba(17, 23, 19, 0.1);
+        border-bottom: 1px solid rgba(17, 23, 19, 0.1);
+        border-left: 1px solid rgba(17, 23, 19, 0.1);
+        background: rgba(244, 221, 160, 0.68);
+        content: "";
+        transform: translateX(-50%) rotate(-1deg);
+        pointer-events: none;
+      }
+
+      .shot-trigger {
+        display: block;
+        width: 100%;
+        border: 0;
+        background: transparent;
+        padding: 0;
+        cursor: zoom-in;
+      }
+
+      .shot-trigger img {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+
+      .shot-caption {
+        display: grid;
+        grid-template-columns: auto minmax(0, 1fr) auto;
+        align-items: center;
+        gap: 16px;
+        border-top: 1px solid var(--line);
+        padding: 13px 16px;
+      }
+
+      .shot-caption span,
+      .shot-caption em {
+        color: var(--quiet);
+        font-family: var(--mono);
+        font-size: 10px;
+        font-style: normal;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+      }
+
+      .shot-caption strong {
+        overflow: hidden;
+        font-size: 14px;
+        font-weight: 600;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .shot-pair {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 20px;
+      }
+
+      .system-board {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        border-top: 1px solid var(--line-strong);
+        border-left: 1px solid var(--line-strong);
+      }
+
+      .system-item {
+        min-height: 250px;
+        border-right: 1px solid var(--line-strong);
+        border-bottom: 1px solid var(--line-strong);
+        padding: 34px;
+      }
+
+      .system-item:nth-child(2) {
+        background: rgba(244, 221, 160, 0.18);
+      }
+
+      .system-item:nth-child(3) {
+        background: rgba(219, 229, 232, 0.52);
+      }
+
+      .system-item:nth-child(4) {
+        background: rgba(40, 107, 88, 0.08);
+      }
+
+      .system-label {
+        color: var(--quiet);
+      }
+
+      .system-item h3 {
+        margin: 38px 0 12px;
+        font-size: 26px;
+      }
+
+      .system-item p {
+        color: var(--muted);
+        font-size: 15px;
+        line-height: 1.7;
+      }
+
+      .system-note {
+        display: grid;
+        grid-template-columns: minmax(0, 1.25fr) minmax(300px, 0.75fr);
+        gap: 48px;
+        margin-top: 44px;
+        border-top: 1px solid var(--line-strong);
+        padding-top: 28px;
+      }
+
+      .system-note strong {
+        max-width: 22ch;
+        font-size: 28px;
+        line-height: 1.35;
+      }
+
+      .system-note p {
+        color: var(--muted);
+        font-size: 15px;
+      }
+
+      .method-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        align-items: stretch;
+        gap: 22px;
+      }
+
+      .evidence-sheet {
+        min-width: 0;
+        border: 1px solid var(--line-strong);
+        border-radius: var(--radius-sm);
+        background: var(--paper-raised);
+        box-shadow: 7px 8px 0 rgba(17, 23, 19, 0.07);
+        padding: 30px;
+      }
+
+      .evidence-sheet:first-child {
+        background:
+          linear-gradient(rgba(17, 23, 19, 0.035) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(17, 23, 19, 0.025) 1px, transparent 1px),
+          var(--paper-raised);
+        background-size: 24px 24px, 24px 24px, auto;
+      }
+
+      .evidence-head {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        justify-content: flex-start;
+        gap: 18px;
+        border-bottom: 1px solid var(--line-strong);
+        padding-bottom: 20px;
+      }
+
+      .evidence-file {
+        display: block;
+        margin-bottom: 7px;
+        color: var(--accent-deep);
+        font-family: var(--mono);
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .evidence-head h3 {
+        font-size: 25px;
+        line-height: 1.2;
+      }
+
+      .evidence-badge {
+        flex: 0 0 auto;
+        border: 1px solid var(--line-strong);
+        border-radius: 999px;
+        background: rgba(244, 221, 160, 0.48);
+        padding: 6px 9px;
+        color: var(--muted);
+        font-family: var(--mono);
+        font-size: 9px;
+        font-weight: 700;
+        white-space: nowrap;
+      }
+
+      .evidence-quote {
+        margin: 26px 0;
+        border-left: 4px solid var(--accent);
+        padding: 2px 0 2px 18px;
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 1.55;
+      }
+
+      .evidence-block {
+        margin-top: 26px;
+      }
+
+      .evidence-block h4 {
+        margin: 0 0 12px;
+        font-size: 15px;
+      }
+
+      .principle-list,
+      .state-list {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .principle-list {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        border-top: 1px solid var(--line);
+      }
+
+      .principle-list li {
+        min-height: 74px;
+        border-bottom: 1px solid var(--line);
+        padding: 13px 12px 13px 0;
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 1.55;
+      }
+
+      .principle-list li:nth-child(even) {
+        border-left: 1px solid var(--line);
+        padding-left: 14px;
+      }
+
+      .method-flow {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        border-top: 1px solid var(--line-strong);
+        border-left: 1px solid var(--line-strong);
+      }
+
+      .method-flow span {
+        display: grid;
+        min-height: 66px;
+        place-items: center;
+        border-right: 1px solid var(--line-strong);
+        border-bottom: 1px solid var(--line-strong);
+        padding: 9px;
+        font-family: var(--mono);
+        font-size: 11px;
+        font-weight: 700;
+        line-height: 1.4;
+        text-align: center;
+      }
+
+      .method-flow span:nth-child(2),
+      .method-flow span:nth-child(5) {
+        background: rgba(244, 221, 160, 0.22);
+      }
+
+      .field-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 7px;
+      }
+
+      .field-list code {
+        border: 1px solid var(--line);
+        border-radius: 3px;
+        background: rgba(40, 107, 88, 0.06);
+        padding: 6px 8px;
+        color: var(--accent-deep);
+        font-family: var(--mono);
+        font-size: 10px;
+      }
+
+      .state-meta {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        margin-top: 26px;
+        border-top: 1px solid var(--line-strong);
+        border-left: 1px solid var(--line-strong);
+      }
+
+      .state-meta div {
+        min-width: 0;
+        border-right: 1px solid var(--line-strong);
+        border-bottom: 1px solid var(--line-strong);
+        padding: 13px;
+      }
+
+      .state-meta dt {
+        color: var(--quiet);
+        font-family: var(--mono);
+        font-size: 9px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      .state-meta dd {
+        margin-top: 6px;
+        overflow-wrap: anywhere;
+        font-size: 13px;
+        font-weight: 600;
+        line-height: 1.45;
+      }
+
+      .state-list {
+        display: grid;
+        gap: 10px;
+      }
+
+      .state-list li {
+        position: relative;
+        padding-left: 17px;
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.65;
+      }
+
+      .state-list li::before {
+        position: absolute;
+        top: 0.72em;
+        left: 0;
+        width: 7px;
+        height: 2px;
+        background: var(--accent);
+        content: "";
+      }
+
+      .privacy-note {
+        margin-top: 24px;
+        border-top: 1px solid var(--line);
+        padding-top: 16px;
+        color: var(--quiet);
+        font-size: 12px;
+        line-height: 1.65;
+      }
+
+      .evidence-action {
+        display: inline-flex;
+        align-items: center;
+        min-height: 42px;
+        gap: 10px;
+        margin-top: 24px;
+        border: 1px solid var(--line-strong);
+        border-radius: var(--radius-sm);
+        background: rgba(238, 241, 236, 0.72);
+        padding: 9px 12px;
+        cursor: pointer;
+        font-size: 13px;
+        font-weight: 600;
+        transition: border-color 150ms ease, background 150ms ease;
+      }
+
+      .evidence-action:hover {
+        border-color: rgba(40, 107, 88, 0.52);
+        background: rgba(40, 107, 88, 0.08);
+      }
+
+      .release-line {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        border-top: 1px solid var(--line-strong);
+      }
+
+      .release-item {
+        position: relative;
+        min-height: 260px;
+        border-bottom: 1px solid var(--line-strong);
+        padding: 30px 24px 34px 0;
+      }
+
+      .release-item + .release-item {
+        border-left: 1px solid var(--line);
+        padding-left: 24px;
+      }
+
+      .release-item::before {
+        position: absolute;
+        top: -5px;
+        left: 0;
+        width: 9px;
+        height: 9px;
+        border: 1px solid var(--accent);
+        border-radius: 50%;
+        background: var(--paper);
+        content: "";
+      }
+
+      .release-item + .release-item::before {
+        left: 24px;
+      }
+
+      .release-version {
+        color: var(--accent-deep);
+      }
+
+      .release-item h3 {
+        margin: 46px 0 14px;
+        font-size: 22px;
+      }
+
+      .release-item p {
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.65;
+      }
+
+      .closing {
+        padding: 28px 0 72px;
+      }
+
+      .closing-board {
+        position: relative;
+        min-height: 430px;
+        overflow: hidden;
+        border: 1px solid var(--line-strong);
+        border-radius: var(--radius-md);
+        background:
+          linear-gradient(rgba(17, 23, 19, 0.045) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(17, 23, 19, 0.04) 1px, transparent 1px),
+          var(--paper-raised);
+        background-size: 32px 32px;
+        box-shadow: 8px 10px 0 rgba(17, 23, 19, 0.08);
+        padding: 64px;
+      }
+
+      .closing-board::before,
+      .closing-board::after {
+        position: absolute;
+        width: 170px;
+        height: 170px;
+        border: 1px solid var(--line-strong);
+        background: rgba(244, 221, 160, 0.64);
+        content: "";
+      }
+
+      .closing-board::before {
+        top: 46px;
+        right: 11%;
+        transform: rotate(4deg);
+      }
+
+      .closing-board::after {
+        right: 24%;
+        bottom: 32px;
+        background: rgba(219, 229, 232, 0.8);
+        transform: rotate(-3deg);
+      }
+
+      .closing-copy {
+        position: relative;
+        z-index: 2;
+        max-width: 690px;
+      }
+
+      .closing h2 {
+        max-width: 12ch;
+        margin: 16px 0 28px;
+        font-size: 54px;
+        line-height: 1.05;
+      }
+
+      .closing p {
+        max-width: 34em;
+        color: var(--muted);
+        font-size: 18px;
+      }
+
+      .closing-link {
+        display: inline-flex;
+        align-items: center;
+        min-height: 44px;
+        gap: 10px;
+        margin-top: 34px;
+        border-bottom: 2px solid var(--accent);
+        font-size: 14px;
+        font-weight: 600;
+      }
+
+      .closing-link span {
+        font-family: var(--mono);
+      }
+
+      .site-footer {
+        border-top: 1px solid var(--line);
+        padding: 22px 0 36px;
+      }
+
+      .footer-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+        color: var(--quiet);
+        font-family: var(--mono);
+        font-size: 11px;
+      }
+
+      .image-viewer {
+        width: min(94vw, 1600px);
+        max-height: 92svh;
+        overflow: hidden;
+        border: 1px solid var(--line-strong);
+        border-radius: var(--radius-md);
+        background: var(--paper-raised);
+        box-shadow: 0 30px 90px rgba(17, 23, 19, 0.3);
+        padding: 0;
+      }
+
+      .image-viewer::backdrop {
+        background: rgba(17, 23, 19, 0.72);
+      }
+
+      .viewer-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        border-bottom: 1px solid var(--line);
+        padding: 12px 14px 12px 18px;
+      }
+
+      .viewer-head strong {
+        overflow: hidden;
+        font-size: 14px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .viewer-close {
+        display: grid;
+        flex: 0 0 36px;
+        width: 36px;
+        height: 36px;
+        place-items: center;
+        border: 1px solid var(--line-strong);
+        border-radius: var(--radius-sm);
+        background: var(--paper);
+        cursor: pointer;
+        font-size: 22px;
+        line-height: 1;
+      }
+
+      .viewer-image-shell {
+        max-height: calc(92svh - 62px);
+        overflow: auto;
+        background: #f3f0e8;
+      }
+
+      .viewer-image-shell img {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+
+      .document-viewer {
+        width: min(92vw, 980px);
+        max-height: 90svh;
+        overflow: hidden;
+        border: 1px solid var(--line-strong);
+        border-radius: var(--radius-md);
+        background: var(--paper-raised);
+        box-shadow: 0 30px 90px rgba(17, 23, 19, 0.3);
+        padding: 0;
+      }
+
+      .document-viewer::backdrop {
+        background: rgba(17, 23, 19, 0.72);
+      }
+
+      .document-viewer .viewer-head > div {
+        min-width: 0;
+      }
+
+      .document-viewer-label {
+        display: block;
+        margin-bottom: 4px;
+        color: var(--accent-deep);
+        font-family: var(--mono);
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .document-viewer .viewer-head strong {
+        display: block;
+      }
+
+      .document-viewer-shell {
+        max-height: calc(90svh - 66px);
+        overflow: auto;
+        overscroll-behavior: contain;
+        background:
+          linear-gradient(rgba(17, 23, 19, 0.035) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(17, 23, 19, 0.025) 1px, transparent 1px),
+          var(--paper-raised);
+        background-size: 24px 24px, 24px 24px, auto;
+      }
+
+      .document-content {
+        width: min(100%, 820px);
+        margin: 0 auto;
+        padding: 42px 38px 56px;
+      }
+
+      .document-content > :first-child {
+        margin-top: 0;
+      }
+
+      .document-content h2 {
+        margin: 0 0 18px;
+        font-size: 34px;
+        line-height: 1.15;
+      }
+
+      .document-content h3 {
+        margin: 34px 0 14px;
+        border-top: 1px solid var(--line-strong);
+        padding-top: 20px;
+        font-size: 20px;
+        line-height: 1.3;
+      }
+
+      .document-content p,
+      .document-content li {
+        color: var(--muted);
+        font-size: 15px;
+        line-height: 1.8;
+      }
+
+      .document-content ul,
+      .document-content ol {
+        margin: 0;
+        padding-left: 1.25em;
+      }
+
+      .document-content li + li {
+        margin-top: 8px;
+      }
+
+      .document-lead {
+        border-left: 4px solid var(--accent);
+        padding-left: 18px;
+        color: var(--ink) !important;
+        font-size: 19px !important;
+        font-weight: 600;
+      }
+
+      .document-note {
+        margin-top: 28px;
+        border: 1px solid var(--line);
+        background: rgba(244, 221, 160, 0.22);
+        padding: 14px 16px;
+        font-size: 13px !important;
+      }
+
+      .document-fields {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .document-fields code {
+        border: 1px solid var(--line);
+        border-radius: 3px;
+        background: rgba(40, 107, 88, 0.07);
+        padding: 7px 9px;
+        color: var(--accent-deep);
+        font-family: var(--mono);
+        font-size: 11px;
+      }
+
+      .document-meta {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        margin: 26px 0 0;
+        border-top: 1px solid var(--line-strong);
+        border-left: 1px solid var(--line-strong);
+      }
+
+      .document-meta div {
+        border-right: 1px solid var(--line-strong);
+        border-bottom: 1px solid var(--line-strong);
+        padding: 14px;
+      }
+
+      .document-meta dt {
+        color: var(--quiet);
+        font-family: var(--mono);
+        font-size: 9px;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      .document-meta dd {
+        margin-top: 6px;
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 1.5;
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(18px);
+        transition: opacity 500ms ease, transform 500ms ease;
+      }
+
+      .reveal.is-visible {
+        opacity: 1;
+        transform: none;
+      }
+
+      @media (max-width: 1540px) {
+        .anchor-rail {
+          right: 18px;
+          width: 132px;
+        }
+
+        .hero,
+        .container {
+          width: min(calc(100% - 200px), var(--max));
+        }
+      }
+
+      @media (max-width: 1180px) {
+        .anchor-rail {
+          display: none;
+        }
+
+        .mobile-nav {
+          display: block;
+        }
+
+        .hero,
+        .container {
+          width: min(calc(100% - 48px), var(--max));
+        }
+
+        .section-heading {
+          grid-template-columns: minmax(0, 0.85fr) minmax(320px, 1.15fr);
+          gap: 42px;
+        }
+
+        .hero-copy {
+          width: 54%;
+        }
+      }
+
+      @media (max-width: 880px) {
+        .header-inner {
+          grid-template-columns: 1fr auto;
+          gap: 14px;
+          padding: 10px 16px;
+        }
+
+        .header-left {
+          display: grid;
+          grid-column: 1 / -1;
+          grid-template-columns: 192px minmax(0, 1fr);
+          width: 100%;
+          gap: 14px;
+        }
+
+        .site-brand {
+          flex-basis: auto;
+        }
+
+        .project-switcher summary {
+          width: 100%;
+          min-width: 0;
+        }
+
+        .project-menu {
+          position: fixed;
+          top: 70px;
+          right: 14px;
+          left: 14px;
+          width: auto;
+        }
+
+        .header-right {
+          position: absolute;
+          top: 13px;
+          right: 16px;
+        }
+
+        .site-brand {
+          padding-right: 12px;
+        }
+
+        .site-brand::after {
+          display: none;
+        }
+
+        .site-brand-title {
+          max-width: 126px;
+          font-size: 15px;
+        }
+
+        .site-brand-subtitle {
+          font-size: 9px;
+        }
+
+        .project-switcher {
+          padding-right: 56px;
+        }
+
+        .hero {
+          height: min(620px, 68svh);
+          min-height: 500px;
+          margin-top: 16px;
+        }
+
+        .hero-copy {
+          width: 100%;
+          height: 100%;
+          padding: 34px;
+        }
+
+        .hero h1 {
+          font-size: 56px;
+          white-space: normal;
+        }
+
+        .hero-statement {
+          max-width: 22ch;
+          font-size: 19px;
+        }
+
+        .hero-meta {
+          width: 100%;
+        }
+
+        .hero::before {
+          top: 30px;
+          right: 28px;
+          width: 88px;
+          height: 16px;
+        }
+
+        .hero::after {
+          right: -16px;
+          bottom: 4px;
+          font-size: 200px;
+        }
+
+        .section-band {
+          padding: 78px 0;
+        }
+
+        .section-heading {
+          grid-template-columns: 1fr;
+          gap: 24px;
+          margin-bottom: 44px;
+        }
+
+        .section-heading h2 {
+          font-size: 42px;
+        }
+
+        .premise-grid,
+        .system-note,
+        .method-grid {
+          grid-template-columns: 1fr;
+          gap: 0;
+        }
+
+        .method-grid {
+          gap: 28px;
+        }
+
+        .premise-quote {
+          padding: 36px 0;
+        }
+
+        .premise-facts {
+          border-top: 1px solid var(--line-strong);
+          border-left: 0;
+        }
+
+        .premise-facts article {
+          padding-left: 0;
+        }
+
+        .loop-map,
+        .release-line {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .loop-map a:nth-child(3),
+        .loop-map a:nth-child(4) {
+          border-top: 1px solid var(--line);
+        }
+
+        .loop-map a:nth-child(3) {
+          border-left: 0;
+        }
+
+        .stage {
+          grid-template-columns: 1fr;
+          gap: 24px;
+        }
+
+        .stage-copy {
+          position: static;
+          display: grid;
+          grid-template-columns: 72px minmax(0, 1fr);
+          column-gap: 20px;
+        }
+
+        .stage-index {
+          grid-row: 1 / span 2;
+          margin: 0;
+        }
+
+        .shot-pair,
+        .system-board {
+          grid-template-columns: 1fr;
+        }
+
+        .release-item:nth-child(3) {
+          border-left: 0;
+        }
+
+        .closing-board {
+          min-height: 390px;
+          padding: 46px;
+        }
+
+        .closing h2 {
+          font-size: 44px;
+        }
+      }
+
+      @media (max-width: 620px) {
+        html {
+          scroll-behavior: auto;
+        }
+
+        .header-left {
+          grid-template-columns: 136px minmax(0, 1fr);
+          gap: 8px;
+        }
+
+        .site-brand-title {
+          max-width: 124px;
+          font-size: 12px;
+        }
+
+        .project-current strong {
+          font-size: 13px;
+        }
+
+        .project-mark {
+          display: none;
+        }
+
+        .project-switcher summary {
+          min-height: 40px;
+          padding-left: 12px;
+        }
+
+        .header-right {
+          top: 11px;
+        }
+
+        .mobile-nav summary {
+          min-height: 38px;
+          padding: 8px 10px;
+        }
+
+        .hero,
+        .container {
+          width: calc(100% - 28px);
+        }
+
+        .hero {
+          min-height: 500px;
+        }
+
+        .hero-copy {
+          height: 100%;
+          padding: 26px 22px;
+        }
+
+        .hero-topline {
+          gap: 12px;
+        }
+
+        .hero-kicker {
+          gap: 7px;
+          font-size: 10px;
+          white-space: nowrap;
+        }
+
+        .hero-version {
+          margin-top: 7px;
+          font-size: 9px;
+          white-space: nowrap;
+        }
+
+        .hero-version-detail {
+          display: none;
+        }
+
+        .hero h1 {
+          font-size: 50px;
+        }
+
+        .hero-statement {
+          margin-top: 16px;
+          font-size: 17px;
+        }
+
+        .hero-meta {
+          margin-top: 22px;
+        }
+
+        .hero-meta div {
+          padding-top: 10px;
+        }
+
+        .hero-meta dd {
+          font-size: 11px;
+        }
+
+        .section-band {
+          padding: 64px 0;
+        }
+
+        #premise.section-band {
+          padding-top: 44px;
+        }
+
+        .section-heading h2 {
+          font-size: 36px;
+        }
+
+        .section-heading > p {
+          font-size: 17px;
+        }
+
+        .premise-quote p {
+          font-size: 28px;
+        }
+
+        .premise-facts article {
+          grid-template-columns: 1fr;
+          gap: 9px;
+        }
+
+        .loop-map {
+          grid-template-columns: 1fr;
+        }
+
+        .loop-map a + a {
+          border-top: 1px solid var(--line);
+          border-left: 0;
+        }
+
+        .stage-list {
+          gap: 64px;
+        }
+
+        .stage-copy {
+          grid-template-columns: 52px minmax(0, 1fr);
+        }
+
+        .stage-copy h3 {
+          font-size: 24px;
+        }
+
+        .shot-caption {
+          grid-template-columns: auto minmax(0, 1fr);
+        }
+
+        .shot-caption em {
+          display: none;
+        }
+
+        .system-item {
+          min-height: 0;
+          padding: 28px 24px;
+        }
+
+        .system-item h3 {
+          margin-top: 28px;
+        }
+
+        .system-note strong {
+          font-size: 24px;
+        }
+
+        .system-note p {
+          margin-top: 20px;
+        }
+
+        .evidence-sheet {
+          padding: 24px 20px;
+        }
+
+        .principle-list {
+          grid-template-columns: 1fr;
+        }
+
+        .principle-list li:nth-child(even) {
+          border-left: 0;
+          padding-left: 0;
+        }
+
+        .method-flow {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .state-meta {
+          grid-template-columns: 1fr;
+        }
+
+        .document-viewer {
+          width: calc(100vw - 20px);
+          max-height: calc(100svh - 20px);
+        }
+
+        .document-viewer-shell {
+          max-height: calc(100svh - 86px);
+        }
+
+        .document-content {
+          padding: 30px 20px 42px;
+        }
+
+        .document-content h2 {
+          font-size: 28px;
+        }
+
+        .document-meta {
+          grid-template-columns: 1fr;
+        }
+
+        .release-line {
+          grid-template-columns: 1fr;
+        }
+
+        .release-item + .release-item {
+          border-left: 0;
+          padding-left: 0;
+        }
+
+        .release-item + .release-item::before {
+          left: 0;
+        }
+
+        .closing-board {
+          min-height: 430px;
+          padding: 34px 24px;
+        }
+
+        .closing-board::before {
+          top: auto;
+          right: 18px;
+          bottom: 28px;
+          width: 120px;
+          height: 120px;
+        }
+
+        .closing-board::after {
+          right: 104px;
+          bottom: 12px;
+          width: 102px;
+          height: 102px;
+        }
+
+        .closing h2 {
+          font-size: 38px;
+        }
+
+        .footer-inner {
+          align-items: flex-start;
+          flex-direction: column;
+          gap: 8px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+
+        .reveal {
+          opacity: 1;
+          transform: none;
+          transition: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="site-shell">
+      <header class="site-header">
+        <div class="header-inner">
+          <div class="header-left">
+            <a class="site-brand" href="index.html" aria-label="返回宇迪的 AI 产品实验室">
+              <span>
+                <span class="site-brand-title">宇迪的AI产品实验室</span>
+                <span class="site-brand-subtitle">Yudi AI Lab</span>
+              </span>
+            </a>
+
+            <details class="project-switcher">
+              <summary aria-label="切换项目，当前项目 Idea Storm Lab">
+                <span class="project-mark">IS</span>
+                <span class="project-current">
+                  <strong>Idea Storm Lab</strong>
+                </span>
+                <span class="project-chevron" aria-hidden="true">▾</span>
+              </summary>
+              <div class="project-menu">
+                <a href="index.html">
+                  <strong>DesignHarnessAgent</strong>
+                  <span>AI 产品设计与设计工程工作协议</span>
+                </a>
+                <a class="is-active" href="#top" aria-current="page">
+                  <strong>Idea Storm Lab</strong>
+                  <span>邀请制创业脑暴与方向归纳空间</span>
+                </a>
+              </div>
+            </details>
+          </div>
+
+          <div class="header-right">
+            <details class="mobile-nav">
+              <summary>目录</summary>
+              <nav class="mobile-panel" aria-label="移动端页面导航">
+                <a href="#intro">简介</a>
+                <a href="#premise">初衷</a>
+                <a href="#loop">协作链</a>
+                <a href="#system">系统</a>
+                <a href="#method">方法</a>
+                <a href="#release">迭代</a>
+                <a href="#closing">结语</a>
+              </nav>
+            </details>
+          </div>
+        </div>
+      </header>
+
+      <nav class="anchor-rail" aria-label="页面内容锚点">
+        <a class="is-active" href="#intro" aria-current="true" data-index="00">简介</a>
+        <a href="#premise" data-index="01">初衷</a>
+        <a href="#loop" data-index="02">协作链</a>
+        <a href="#system" data-index="03">系统</a>
+        <a href="#method" data-index="04">方法</a>
+        <a href="#release" data-index="05">迭代</a>
+        <a href="#closing" data-index="06">结语</a>
+      </nav>
+
+      <main>
+        <section id="intro" class="hero" aria-labelledby="hero-title">
+          <div class="hero-copy">
+            <div class="hero-topline">
+              <span class="hero-kicker">基于 Skill 的小工具</span>
+              <span class="hero-version">v0.4.0<span class="hero-version-detail"> / team workbench</span></span>
+            </div>
+            <div>
+              <h1 id="hero-title">Idea Storm Lab</h1>
+              <p class="hero-statement">把分散的创业念头，变成团队可以共同推进的方向。</p>
+            </div>
+            <dl class="hero-meta">
+              <div>
+                <dt>Surface</dt>
+                <dd>Web App</dd>
+              </div>
+              <div>
+                <dt>Team</dt>
+                <dd>早期创业团队</dd>
+              </div>
+              <div>
+                <dt>Loop</dt>
+                <dd>想法到方向</dd>
+              </div>
+            </dl>
+          </div>
+        </section>
+
+        <section id="premise" class="section-band" aria-labelledby="premise-title">
+          <div class="container">
+            <div class="section-heading">
+              <div>
+                <span class="section-kicker">01 / Product premise</span>
+                <h2 id="premise-title">脑暴不缺输入，缺的是共同判断。</h2>
+              </div>
+              <p>
+                早期团队的想法往往散落在聊天、文档和个人脑海里。Idea Storm Lab
+                不把 AI 当作一次性答案生成器，而是把每条想法送进同一条协作链：保留原始材料、形成结构化分析、公开给团队讨论，最后在共同条件下归纳方向。
+              </p>
+            </div>
+
+            <div class="premise-grid reveal">
+              <div class="premise-quote">
+                <p>从“我有一个想法”，走到<em>“我们知道接下来验证什么”</em>。</p>
+              </div>
+              <div class="premise-facts">
+                <article>
+                  <span class="fact-label">Input</span>
+                  <div>
+                    <h3>允许想法尚未成型</h3>
+                    <p>文字、图片与文档都可以成为起点，先保留语境，再进入分析。</p>
+                  </div>
+                </article>
+                <article>
+                  <span class="fact-label">Analysis</span>
+                  <div>
+                    <h3>把模糊变成可讨论结构</h3>
+                    <p>内容提取、竞品、用户、业务流程、商业画布和风险被组织为共同语言。</p>
+                  </div>
+                </article>
+                <article>
+                  <span class="fact-label">Decision</span>
+                  <div>
+                    <h3>让团队条件进入判断</h3>
+                    <p>方向归纳同时读取团队属性、归纳维度与多条分析结果，避免只比较点子表面。</p>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="loop" class="section-band" aria-labelledby="loop-title">
+          <div class="container">
+            <div class="section-heading reveal">
+              <div>
+                <span class="section-kicker">02 / Collaboration loop</span>
+                <h2 id="loop-title">四个动作，形成一条可返回的链。</h2>
+              </div>
+              <p>
+                这里没有把“提交想法”和“得到 AI 报告”当成终点。每个阶段都保留返回、补充、重新分析和多人查看的入口，让洞察能继续变成选择。
+              </p>
+            </div>
+
+            <nav class="loop-map reveal" aria-label="Idea Storm Lab 核心流程">
+              <a href="#stage-write"><span>01</span><strong>写下想法</strong></a>
+              <a href="#stage-analyze"><span>02</span><strong>形成分析</strong></a>
+              <a href="#stage-share"><span>03</span><strong>共享灵感</strong></a>
+              <a href="#stage-induce"><span>04</span><strong>归纳方向</strong></a>
+            </nav>
+
+            <div class="stage-list">
+              <article id="stage-write" class="stage reveal">
+                <div class="stage-copy">
+                  <span class="stage-index">Stage 01</span>
+                  <div>
+                    <h3>写下想法</h3>
+                    <p>左侧保持低门槛输入，右侧立即承接分析进度。提交不是离开当前任务，而是让结果在同一工作台展开。</p>
+                  </div>
+                </div>
+                <figure class="shot-frame">
+                  <button
+                    class="shot-trigger"
+                    type="button"
+                    data-viewer-src="assets/idea-storm-lab/02-write-and-analyze.png"
+                    data-viewer-title="写想法与实时分析"
+                    aria-label="放大查看写想法与实时分析界面"
+                    aria-haspopup="dialog"
+                    aria-controls="imageViewer"
+                  >
+                    <img
+                      src="assets/idea-storm-lab/02-write-and-analyze.png"
+                      alt="Idea Storm Lab 写想法工作台，左侧为标题、内容和附件输入，右侧为实时分析区域"
+                      width="1920"
+                      height="958"
+                      loading="lazy"
+                    />
+                  </button>
+                  <figcaption class="shot-caption">
+                    <span>01</span>
+                    <strong>输入与分析留在同一个工作上下文</strong>
+                    <em>Write / Analyze</em>
+                  </figcaption>
+                </figure>
+              </article>
+
+              <article id="stage-analyze" class="stage reveal">
+                <div class="stage-copy">
+                  <span class="stage-index">Stage 02</span>
+                  <div>
+                    <h3>形成分析</h3>
+                    <p>分析结果不是一块长文本：文字报告负责推理，商业画布负责对齐关键业务构成，章节备注让团队把判断留在证据旁边。</p>
+                  </div>
+                </div>
+                <div class="shot-pair">
+                  <figure class="shot-frame">
+                    <button
+                      class="shot-trigger"
+                      type="button"
+                      data-viewer-src="assets/idea-storm-lab/03-analysis-result.png"
+                      data-viewer-title="结构化文字分析"
+                      aria-label="放大查看结构化文字分析界面"
+                      aria-haspopup="dialog"
+                      aria-controls="imageViewer"
+                    >
+                      <img
+                        src="assets/idea-storm-lab/03-analysis-result.png"
+                        alt="Idea Storm Lab 分析结果页面，展示内容提取、竞品线索和评分"
+                        width="1920"
+                        height="958"
+                        loading="lazy"
+                      />
+                    </button>
+                    <figcaption class="shot-caption">
+                      <span>02A</span>
+                      <strong>结构化报告</strong>
+                      <em>Report</em>
+                    </figcaption>
+                  </figure>
+                  <figure class="shot-frame">
+                    <button
+                      class="shot-trigger"
+                      type="button"
+                      data-viewer-src="assets/idea-storm-lab/04-business-canvas.png"
+                      data-viewer-title="商业模式画布"
+                      aria-label="放大查看商业模式画布界面"
+                      aria-haspopup="dialog"
+                      aria-controls="imageViewer"
+                    >
+                      <img
+                        src="assets/idea-storm-lab/04-business-canvas.png"
+                        alt="Idea Storm Lab 商业模式画布页面，按关键业务、价值主张、客户关系等模块整理分析"
+                        width="1920"
+                        height="958"
+                        loading="lazy"
+                      />
+                    </button>
+                    <figcaption class="shot-caption">
+                      <span>02B</span>
+                      <strong>商业画布</strong>
+                      <em>Canvas</em>
+                    </figcaption>
+                  </figure>
+                </div>
+              </article>
+
+              <article id="stage-share" class="stage reveal">
+                <div class="stage-copy">
+                  <span class="stage-index">Stage 03</span>
+                  <div>
+                    <h3>共享灵感</h3>
+                    <p>灵感墙让团队看到彼此的原始想法与分析入口。所有人可以查看，编辑权仍归作者，开放讨论与内容归属被同时保留。</p>
+                  </div>
+                </div>
+                <figure class="shot-frame">
+                  <button
+                    class="shot-trigger"
+                    type="button"
+                    data-viewer-src="assets/idea-storm-lab/05-inspiration-wall.png"
+                    data-viewer-title="团队灵感墙"
+                    aria-label="放大查看团队灵感墙界面"
+                    aria-haspopup="dialog"
+                    aria-controls="imageViewer"
+                  >
+                    <img
+                      src="assets/idea-storm-lab/05-inspiration-wall.png"
+                      alt="Idea Storm Lab 灵感墙，多个团队想法以纸张卡片形式并列展示"
+                      width="1920"
+                      height="958"
+                      loading="lazy"
+                    />
+                  </button>
+                  <figcaption class="shot-caption">
+                    <span>03</span>
+                    <strong>让每个想法可见，同时保留作者边界</strong>
+                    <em>Shared wall</em>
+                  </figcaption>
+                </figure>
+              </article>
+
+              <article id="stage-induce" class="stage reveal">
+                <div class="stage-copy">
+                  <span class="stage-index">Stage 04</span>
+                  <div>
+                    <h3>归纳方向</h3>
+                    <p>至少选择三条已有分析的想法，再加入团队属性与共同维度。系统比较的不是哪条文字更漂亮，而是哪条方向更适合当前团队推进。</p>
+                  </div>
+                </div>
+                <figure class="shot-frame">
+                  <button
+                    class="shot-trigger"
+                    type="button"
+                    data-viewer-src="assets/idea-storm-lab/06-direction-induction.png"
+                    data-viewer-title="多想法方向归纳"
+                    aria-label="放大查看多想法方向归纳界面"
+                    aria-haspopup="dialog"
+                    aria-controls="imageViewer"
+                  >
+                    <img
+                      src="assets/idea-storm-lab/06-direction-induction.png"
+                      alt="Idea Storm Lab 方向归纳页面，包含方向列表、想法选择、团队属性、归纳维度与归纳结果"
+                      width="1920"
+                      height="958"
+                      loading="lazy"
+                    />
+                  </button>
+                  <figcaption class="shot-caption">
+                    <span>04</span>
+                    <strong>从多条分析收敛为团队可执行方向</strong>
+                    <em>Direction</em>
+                  </figcaption>
+                </figure>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section id="system" class="section-band" aria-labelledby="system-title">
+          <div class="container">
+            <div class="section-heading reveal">
+              <div>
+                <span class="section-kicker">03 / Product system</span>
+                <h2 id="system-title">小型工具，也要有真实产品边界。</h2>
+              </div>
+              <p>
+                Idea Storm Lab 不是只为展示视觉的原型。邀请制身份、作者权限、异步分析、版本记录与本地数据持久化共同构成了一个可以被真实团队反复使用的工作空间。
+              </p>
+            </div>
+
+            <div class="system-board reveal">
+              <article class="system-item">
+                <span class="system-label">Identity</span>
+                <h3>邀请制团队空间</h3>
+                <p>注册、登录、口令重置与邀请码控制，让共享发生在有边界的团队语境中。</p>
+              </article>
+              <article class="system-item">
+                <span class="system-label">Ownership</span>
+                <h3>可见不等于可改</h3>
+                <p>团队成员能查看彼此想法，但原始内容的编辑、重分析和关键状态仍由相应作者控制。</p>
+              </article>
+              <article class="system-item">
+                <span class="system-label">Intelligence</span>
+                <h3>Skill 驱动的结构化分析</h3>
+                <p>项目内分析 Skill 定义分析章节与判断方式，LLM 负责执行，并支持澄清后继续分析。</p>
+              </article>
+              <article class="system-item">
+                <span class="system-label">Continuity</span>
+                <h3>可以回来继续的任务</h3>
+                <p>后台分析、方向版本、采纳锁定和快照让长任务不必占住当前会话，也不会丢掉当时的条件。</p>
+              </article>
+            </div>
+
+            <div class="system-note reveal">
+              <strong>Python + SQLite + 原生 Web，保持部署和迭代都足够轻。</strong>
+              <p>
+                当前工程采用单体 Python 服务、本地 SQLite、静态前端与可配置的 OpenAI 兼容模型接口。技术选择服务于一个目标：让小团队能以较低成本拥有自己的 AI 脑暴空间。
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section id="method" class="section-band" aria-labelledby="method-title">
+          <div class="container">
+            <div class="section-heading reveal">
+              <div>
+                <span class="section-kicker">04 / Method evidence</span>
+                <h2 id="method-title">把方法，放到台面上。</h2>
+              </div>
+              <p>
+                一个 AI 小工具的差异，不只在界面和模型，也在它如何约束判断。这里公开两份工作证据：Idea Storm Lab
+                实际调用的分析 Skill 节选，以及 DesignHarnessAgent 为本页维护的中文状态记录。
+              </p>
+            </div>
+
+            <div class="method-grid">
+              <article class="evidence-sheet reveal">
+                <header class="evidence-head">
+                  <div>
+                    <span class="evidence-file">analysis_skill.md / selected</span>
+                    <h3>创业想法分析 Skill</h3>
+                  </div>
+                  <span class="evidence-badge">公开节选</span>
+                </header>
+
+                <p class="evidence-quote">
+                  任务不是夸赞想法，而是把模糊灵感转化为可讨论、可验证、可取舍的结构化判断。
+                </p>
+
+                <div class="evidence-block">
+                  <h4>公开原则</h4>
+                  <ul class="principle-list">
+                    <li>先忠实理解输入，再进行推断。</li>
+                    <li>假设必须看起来像假设，而不是结论。</li>
+                    <li>不编造竞品、市场、融资或政策事实。</li>
+                    <li>建议要落到用户、场景、行为、付费或验证动作。</li>
+                  </ul>
+                </div>
+
+                <div class="evidence-block">
+                  <h4>被调用的分析链</h4>
+                  <div class="method-flow" aria-label="Skill 公开分析流程">
+                    <span>内容拆解</span>
+                    <span>替代方案</span>
+                    <span>用户与场景</span>
+                    <span>抓手分析</span>
+                    <span>风险验证</span>
+                    <span>商业画布</span>
+                  </div>
+                </div>
+
+                <div class="evidence-block">
+                  <h4>部分输出契约</h4>
+                  <div class="field-list" aria-label="Skill 部分输出字段">
+                    <code>content_extract</code>
+                    <code>user_segments</code>
+                    <code>hook_analysis</code>
+                    <code>risks</code>
+                    <code>section_scores</code>
+                    <code>canvas</code>
+                  </div>
+                </div>
+
+                <button
+                  class="evidence-action"
+                  type="button"
+                  data-document-template="skillDocumentTemplate"
+                  data-document-title="创业想法分析 Skill"
+                  aria-haspopup="dialog"
+                  aria-controls="documentViewer"
+                >
+                  打开 Skill 公开节选
+                </button>
+              </article>
+
+              <article class="evidence-sheet reveal">
+                <header class="evidence-head">
+                  <div>
+                    <span class="evidence-file">STATE.zh-CN.md / public view</span>
+                    <h3>DesignHarnessAgent 的设计工程状态</h3>
+                  </div>
+                  <span class="evidence-badge">中文展示版</span>
+                </header>
+
+                <dl class="state-meta">
+                  <div>
+                    <dt>事件 ID</dt>
+                    <dd>2026-07-28-1408-UX-001</dd>
+                  </div>
+                  <div>
+                    <dt>领域</dt>
+                    <dd>UX / 响应式网页</dd>
+                  </div>
+                  <div>
+                    <dt>执行模式</dt>
+                    <dd>轻量 / 快速</dd>
+                  </div>
+                  <div>
+                    <dt>当前状态</dt>
+                    <dd>待用户验收</dd>
+                  </div>
+                </dl>
+
+                <div class="evidence-block">
+                  <h4>设计契约</h4>
+                  <ul class="state-list">
+                    <li>保留 Yudi AI Lab 的共享外壳与项目切换关系。</li>
+                    <li>用真实产品截图和源项目事实解释 Idea Storm Lab。</li>
+                    <li>新增独立项目页，并公开一段真实 Skill 与中文状态记录。</li>
+                    <li>不改产品仓库，不另起一套视觉系统，不公开私有运行信息。</li>
+                  </ul>
+                </div>
+
+                <div class="evidence-block">
+                  <h4>已确认的修改</h4>
+                  <ul class="state-list">
+                    <li>封面改为全宽文字叙事，移除登录截图。</li>
+                    <li>封面标识改为“基于 Skill 的小工具”。</li>
+                    <li>目录首项改为“00 简介 / 01 初衷”。</li>
+                  </ul>
+                </div>
+
+                <p class="privacy-note">
+                  这是面向访问者的脱敏中文版本。内部 STATE.md 仍是权威状态来源，本机路径、临时附件和内部执行细节不会公开。
+                </p>
+
+                <button
+                  class="evidence-action"
+                  type="button"
+                  data-document-template="stateDocumentTemplate"
+                  data-document-title="DesignHarnessAgent 的设计工程状态"
+                  aria-haspopup="dialog"
+                  aria-controls="documentViewer"
+                >
+                  打开 STATE 中文版
+                </button>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section id="release" class="section-band" aria-labelledby="release-title">
+          <div class="container">
+            <div class="section-heading reveal">
+              <div>
+                <span class="section-kicker">05 / Release path</span>
+                <h2 id="release-title">功能沿着协作链长出来。</h2>
+              </div>
+              <p>
+                四个版本没有追求堆叠菜单，而是逐步补齐同一条路径：先让想法进入系统，再让分析成为方法，让共享成为团队界面，最后让多条想法进入方向判断。
+              </p>
+            </div>
+
+            <div class="release-line reveal">
+              <article class="release-item">
+                <span class="release-version">v0.1.0</span>
+                <h3>想法进入团队空间</h3>
+                <p>邀请制身份、多人提交、附件上传、作者编辑权限，以及基础文字分析与商业画布。</p>
+              </article>
+              <article class="release-item">
+                <span class="release-version">v0.2.0</span>
+                <h3>流程成为清晰页面</h3>
+                <p>信息架构收敛为写想法、分析结果与灵感墙，提交后直接进入分析上下文。</p>
+              </article>
+              <article class="release-item">
+                <span class="release-version">v0.3.0</span>
+                <h3>分析变成可迭代 Skill</h3>
+                <p>从裸提示词升级为项目内专家规则，并接入可替换的 OpenAI 兼容模型接口。</p>
+              </article>
+              <article class="release-item">
+                <span class="release-version">v0.4.0</span>
+                <h3>从想法走向方向</h3>
+                <p>加入方向归纳、章节备注、流式进度、版本历史、采纳锁定与团队条件快照。</p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section id="closing" class="closing" aria-labelledby="closing-title">
+          <div class="container">
+            <div class="closing-board reveal">
+              <div class="closing-copy">
+                <span class="section-kicker">06 / What it keeps</span>
+                <h2 id="closing-title">先允许一个想法不完整，再帮助团队把它变清楚。</h2>
+                <p>
+                  Idea Storm Lab 保存的不是一堆 AI 输出，而是从原始念头、共同分析到方向选择的连续上下文。对早期团队来说，这条连续性本身就是产品价值。
+                </p>
+                <a class="closing-link" href="#top">
+                  返回项目开头
+                  <span aria-hidden="true">↑</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <div class="container footer-inner">
+          <span>Yudi AI Lab / Idea Storm Lab</span>
+          <span>真实产品界面 · v0.4.0</span>
+        </div>
+      </footer>
+    </div>
+
+    <dialog id="imageViewer" class="image-viewer" aria-labelledby="viewerTitle">
+      <div class="viewer-head">
+        <strong id="viewerTitle">产品界面</strong>
+        <button class="viewer-close" type="button" aria-label="关闭图片" title="关闭">&times;</button>
+      </div>
+      <div class="viewer-image-shell">
+        <img id="viewerImage" src="" alt="" />
+      </div>
+    </dialog>
+
+    <dialog id="documentViewer" class="document-viewer" aria-labelledby="documentViewerTitle">
+      <div class="viewer-head">
+        <div>
+          <span class="document-viewer-label">Public document</span>
+          <strong id="documentViewerTitle">公开文档</strong>
+        </div>
+        <button class="viewer-close" type="button" aria-label="关闭文档" title="关闭">&times;</button>
+      </div>
+      <div class="document-viewer-shell">
+        <article id="documentViewerContent" class="document-content"></article>
+      </div>
+    </dialog>
+
+    <template id="skillDocumentTemplate">
+      <h2>创业想法分析 Skill</h2>
+      <p class="document-lead">
+        任务不是夸赞想法，而是帮助远程创业小团队把模糊灵感转化为可讨论、可验证、可取舍的结构化判断。
+      </p>
+
+      <h3>总原则</h3>
+      <ul>
+        <li>先忠实理解输入，再进行推断；不要把用户没有说的信息当成事实。</li>
+        <li>可以提出假设，但必须让假设看起来像假设，而不是结论。</li>
+        <li>不输出“提升效率”“优化体验”这类没有对象和场景的空泛话术。</li>
+        <li>不编造具体竞品、市场规模、融资数据或政策事实；信息不足时给出待调研线索和调研方法。</li>
+        <li>商业建议要落到目标用户、场景、行为路径、付费理由或验证动作上。</li>
+        <li>面向早期创业团队，语言要直接、有判断，但不过度武断。</li>
+      </ul>
+
+      <h3>公开分析链</h3>
+      <ol>
+        <li><strong>内容拆解：</strong>提取问题、用户、场景和现有替代方案，区分已知信息与待补充信息。</li>
+        <li><strong>竞品与替代方案：</strong>优先理解用户现在如何解决问题，而不只罗列同类产品。</li>
+        <li><strong>核心用户群体：</strong>把“大众用户”收敛到具体角色、任务和痛点。</li>
+        <li><strong>抓手分析：</strong>寻找高频、强情绪、低成本验证的具体切入点，而不是功能列表。</li>
+        <li><strong>风险与验证：</strong>识别最可能导致失败的风险，并为每个风险匹配验证动作。</li>
+        <li><strong>商业模式画布：</strong>用九宫格把关键业务构成压缩为短、具体、可讨论的判断。</li>
+      </ol>
+
+      <h3>质量标准</h3>
+      <ul>
+        <li>结论要能帮助团队决定下一步做什么。</li>
+        <li>尽量给出具体场景、角色、动作和验证方式。</li>
+        <li>信息太模糊时明确指出缺口；只有答案会显著改变判断时才追问。</li>
+        <li>不用大段套话填充输出字段。</li>
+      </ul>
+
+      <h3>部分输出契约</h3>
+      <div class="document-fields" aria-label="Skill 部分输出字段">
+        <code>content_extract</code>
+        <code>competitors</code>
+        <code>user_segments</code>
+        <code>hook_analysis</code>
+        <code>risks</code>
+        <code>clarifying_questions</code>
+        <code>section_scores</code>
+        <code>canvas</code>
+      </div>
+      <p class="document-note">
+        公开节选仅用于说明 Idea Storm Lab 如何约束 AI 分析，不包含完整提示词、运行配置或内部实现。
+      </p>
+    </template>
+
+    <template id="stateDocumentTemplate">
+      <h2>DesignHarnessAgent 的设计工程状态</h2>
+      <p class="document-lead">
+        这是 Idea Storm Lab 作品页工作项的中文公开展示版。内部 STATE.md 仍是权威状态来源。
+      </p>
+
+      <dl class="document-meta">
+        <div>
+          <dt>事件 ID</dt>
+          <dd>2026-07-28-1408-UX-001</dd>
+        </div>
+        <div>
+          <dt>工作项</dt>
+          <dd>Idea Storm Lab 作品菜单与独立页面</dd>
+        </div>
+        <div>
+          <dt>领域</dt>
+          <dd>UX / 响应式网页</dd>
+        </div>
+        <div>
+          <dt>当前状态</dt>
+          <dd>待用户验收</dd>
+        </div>
+      </dl>
+
+      <h3>目标</h3>
+      <p>
+        把 Idea Storm Lab 作为 Yudi AI Lab 中第二个可独立访问的作品。访问者应当能够在两个项目间清晰切换，并通过真实界面、真实产品事实和方法证据理解这个小工具。
+      </p>
+
+      <h3>设计契约</h3>
+      <ul>
+        <li>保留 Yudi AI Lab 现有的品牌外壳、导航关系和视觉基线。</li>
+        <li>使用真实产品截图解释从想法输入到方向归纳的协作链。</li>
+        <li>公开一段实际使用的分析 Skill，并提供中文公开状态记录。</li>
+        <li>不修改 Idea Storm Lab 产品本身，不重做现有 DesignHarnessAgent 作品页。</li>
+        <li>不公开本机路径、临时附件、内部代理标识或运行日志。</li>
+      </ul>
+
+      <h3>已确认的设计决定</h3>
+      <ul>
+        <li>封面使用全宽文字叙事和低对比度 IS 水印，不再展示登录截图。</li>
+        <li>封面标识使用“基于 Skill 的小工具”。</li>
+        <li>目录从“00 简介 / 01 初衷”开始。</li>
+        <li>产品截图保持原始比例，不用裁切来制造视觉效果。</li>
+        <li>Skill 与 STATE 作为“方法证据”出现，不伪装成产品功能。</li>
+      </ul>
+
+      <h3>验证结果</h3>
+      <ul>
+        <li>桌面端与移动端页面宽度均与视口一致，没有横向溢出。</li>
+        <li>两份方法文档在宽屏并排、在手机端按阅读顺序堆叠。</li>
+        <li>页面目录已扩展为 00 至 06，并新增“04 方法”。</li>
+        <li>浏览器控制台没有警告或错误，公开内容已通过隐私扫描。</li>
+      </ul>
+
+      <p class="document-note">
+        该公开版本不是内部状态文件的原样复制。本机文件位置、临时素材位置、内部执行过程和工具调用记录均已省略。
+      </p>
+    </template>
+
+    <script>
+      (() => {
+        const projectSwitcher = document.querySelector(".project-switcher");
+        const projectLinks = Array.from(document.querySelectorAll(".project-menu a"));
+        const mobileNav = document.querySelector(".mobile-nav");
+        const anchorLinks = Array.from(document.querySelectorAll(".anchor-rail a"));
+        const mobileLinks = Array.from(document.querySelectorAll(".mobile-panel a"));
+        const sections = Array.from(document.querySelectorAll("main section[id]"));
+        const reveals = Array.from(document.querySelectorAll(".reveal"));
+        const viewer = document.getElementById("imageViewer");
+        const viewerImage = document.getElementById("viewerImage");
+        const viewerTitle = document.getElementById("viewerTitle");
+        const viewerClose = viewer.querySelector(".viewer-close");
+        const documentViewer = document.getElementById("documentViewer");
+        const documentViewerTitle = document.getElementById("documentViewerTitle");
+        const documentViewerContent = document.getElementById("documentViewerContent");
+        const documentViewerClose = documentViewer.querySelector(".viewer-close");
+
+        document.addEventListener("click", (event) => {
+          if (projectSwitcher?.open && !projectSwitcher.contains(event.target)) {
+            projectSwitcher.removeAttribute("open");
+          }
+          if (mobileNav?.open && !mobileNav.contains(event.target)) {
+            mobileNav.removeAttribute("open");
+          }
+        });
+
+        [...anchorLinks, ...mobileLinks].forEach((link) => {
+          link.addEventListener("click", () => {
+            mobileNav?.removeAttribute("open");
+          });
+        });
+
+        projectLinks.forEach((link) => {
+          link.addEventListener("click", () => {
+            projectSwitcher?.removeAttribute("open");
+          });
+        });
+
+        const setActiveSection = (id) => {
+          anchorLinks.forEach((link) => {
+            const active = link.getAttribute("href") === `#${id}`;
+            link.classList.toggle("is-active", active);
+            if (active) {
+              link.setAttribute("aria-current", "true");
+            } else {
+              link.removeAttribute("aria-current");
+            }
+          });
+        };
+
+        if ("IntersectionObserver" in window) {
+          const sectionObserver = new IntersectionObserver(
+            (entries) => {
+              const visible = entries
+                .filter((entry) => entry.isIntersecting)
+                .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+              if (visible[0]) {
+                setActiveSection(visible[0].target.id);
+              }
+            },
+            { rootMargin: "-20% 0px -62% 0px", threshold: [0, 0.2, 0.5] },
+          );
+          sections.forEach((section) => sectionObserver.observe(section));
+
+          const revealObserver = new IntersectionObserver(
+            (entries, observer) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add("is-visible");
+                  observer.unobserve(entry.target);
+                }
+              });
+            },
+            { rootMargin: "0px 0px -8% 0px", threshold: 0.08 },
+          );
+          reveals.forEach((item) => revealObserver.observe(item));
+        } else {
+          reveals.forEach((item) => item.classList.add("is-visible"));
+        }
+
+        document.querySelectorAll(".shot-trigger").forEach((trigger) => {
+          trigger.addEventListener("click", () => {
+            const source = trigger.dataset.viewerSrc;
+            const title = trigger.dataset.viewerTitle || "产品界面";
+            if (!source) return;
+            viewerImage.src = source;
+            viewerImage.alt = title;
+            viewerTitle.textContent = title;
+            viewer.showModal();
+          });
+        });
+
+        viewerClose.addEventListener("click", () => viewer.close());
+        viewer.addEventListener("click", (event) => {
+          if (event.target === viewer) viewer.close();
+        });
+        viewer.addEventListener("close", () => {
+          viewerImage.src = "";
+          viewerImage.alt = "";
+        });
+
+        document.querySelectorAll("[data-document-template]").forEach((trigger) => {
+          trigger.addEventListener("click", () => {
+            const template = document.getElementById(trigger.dataset.documentTemplate);
+            if (!(template instanceof HTMLTemplateElement)) return;
+            documentViewerTitle.textContent = trigger.dataset.documentTitle || "公开文档";
+            documentViewerContent.replaceChildren(template.content.cloneNode(true));
+            documentViewer.showModal();
+          });
+        });
+
+        documentViewerClose.addEventListener("click", () => documentViewer.close());
+        documentViewer.addEventListener("click", (event) => {
+          if (event.target === documentViewer) documentViewer.close();
+        });
+        documentViewer.addEventListener("close", () => {
+          documentViewerContent.replaceChildren();
+        });
+      })();
+    </script>
+  </body>
+</html>

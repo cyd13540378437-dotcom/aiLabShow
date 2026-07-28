@@ -5281,6 +5281,10 @@
                   <strong>DesignHarnessAgent</strong>
                   <span>AI 产品设计与设计工程工作协议</span>
                 </a>
+                <a href="idea-storm-lab.html">
+                  <strong>Idea Storm Lab</strong>
+                  <span>邀请制创业脑暴与方向归纳空间</span>
+                </a>
               </div>
             </details>
           </div>
@@ -6149,10 +6153,24 @@
     </div>
     <script>
       (() => {
+        const projectSwitcher = document.querySelector(".project-switcher");
+        const projectLinks = Array.from(document.querySelectorAll(".project-menu a"));
         const links = Array.from(document.querySelectorAll(".anchor-rail a"));
         const sections = links
           .map((link) => document.querySelector(link.getAttribute("href")))
           .filter(Boolean);
+
+        projectLinks.forEach((link) => {
+          link.addEventListener("click", () => {
+            projectSwitcher?.removeAttribute("open");
+          });
+        });
+
+        document.addEventListener("click", (event) => {
+          if (projectSwitcher?.open && !projectSwitcher.contains(event.target)) {
+            projectSwitcher.removeAttribute("open");
+          }
+        });
 
         if (!links.length || !sections.length) return;
 
