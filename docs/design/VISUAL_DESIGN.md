@@ -25,6 +25,15 @@ The current baseline combines:
   page fragment.
 - Keep page-level navigation separate from project navigation: right-side page
   index on wide screens and a compact `目录` control on narrow screens.
+- Treat the shared shell as fixed geometry, not as a page-specific
+  reinterpretation. At desktop widths the header uses `24px` horizontal
+  padding, a `246px` brand block, a `22px` gap, and a project-switcher summary
+  with a `306px` minimum width and `44px` height. The right-side page index uses
+  `top: clamp(116px, 30vh, 260px)`, `right: 34px`, and `width: 146px`; from
+  `1540px` down it uses `right: 18px` and `width: 132px`.
+- Keep the permanent page index visible through `1181px`. At `1180px` and
+  below, hide it and expose the compact header `目录` control. Page-specific
+  cover layouts must not introduce their own navigation breakpoint.
 - Project pages may adapt accents and evidence treatment, but should not create a
   parallel header, typography system, or global navigation pattern.
 
@@ -130,11 +139,70 @@ begins with the product workflow and maps screenshots 2-6 to the four stages.
 - Full-width screenshot frames remain zoomable because product text naturally
   becomes small on phone-width portfolio pages.
 
+## 履职分析工作流 Project Page
+
+### Narrative
+
+The fourth project page presents one applied delivery chain:
+
+`业务拆解 -> Workflow 编排 -> 构建证据 -> 客户侧结果 -> 上线交付`
+
+The page leads with the user's contribution rather than a generic introduction
+to Dify. It reconciles 15 supplied exports into 12 logical modules: five data
+tools, three duty-analysis modules, two report generators, and two
+composition/writeback modules. The public result is limited to the evidenced
+claim that the workflow was integrated into and used through the customer's
+work-order performance-report surface.
+
+### Evidence Treatment
+
+- Workflow structure is derived from 15 first-party Dify DSL exports. Duplicate
+  and version-family reconciliation remains in the internal evidence record;
+  public copy describes the delivered data-to-analysis-to-report-to-writeback
+  chain and presents the 12-module architecture without exposing file-audit
+  process as project output.
+- Four short Prompt slices may demonstrate evidence preservation, risk
+  calibration, sample-size handling, and output contracts. They must omit
+  complete prompts, variable references, endpoints, credentials, payloads, and
+  operational records.
+- The Dify workspace screenshot is cropped above the account area and reduced to
+  a bounded build-evidence image. It does not become the portfolio shell.
+- Four customer-side report screenshots are cropped below customer-brand,
+  navigation, account, and personal-name regions.
+- The `产品切片` section keeps Workflow-workspace and customer-product slices
+  separate so visitors can distinguish orchestration from delivered output.
+- A bounded workflow blue (`#3568e5`) identifies nodes, links, evidence labels,
+  and local active states. It does not replace the shared mineral-green canvas,
+  paper surfaces, site accent, typography, or navigation.
+- Screenshot dialogs use the shared native-dialog pattern. On compact screens,
+  full-resolution evidence remains horizontally and vertically scrollable
+  rather than being reduced to unreadable text.
+- Screenshot figures and public copy do not convert customer report numbers into
+  portfolio impact, efficiency, adoption, ROI, or performance claims.
+
+### Responsive Behavior
+
+- The two-column cover becomes a single column below `1100px`; its system map
+  becomes a vertical data-to-analysis-to-output chain below `820px`.
+- The four-layer orchestration map uses three module columns on wide screens,
+  two below `820px`, and one below `560px`. Prompt slices use two columns on
+  wide screens and one below `820px`.
+- The wide `PAGE INDEX` inherits the shared fixed geometry and remains visible
+  above `1180px`, including at `1440px`. At `1180px` and below it is replaced by
+  the shared compact header directory.
+- Direct fragment URLs and directory clicks land sections below the sticky
+  header and synchronize the current navigation state.
+- Below `560px`, project and page menus keep `14px` viewport margins, evidence
+  cards stack, and native dialogs keep an outer margin while exposing
+  full-resolution scrollable evidence.
+
 ## Design Exclusions
 
 - No generic SaaS gradient hero, floating decorative orbs, or stock imagery.
 - No rounded-card composition for every section.
 - No imitation of the Idea Storm Lab application shell as the portfolio shell.
+- No imitation of the Dify workspace or customer report application as the
+  portfolio shell.
 - No new global palette or typography system per project.
 - No invented product claims or interactions that are absent from first-party
   source and screenshots.

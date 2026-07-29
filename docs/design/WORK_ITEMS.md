@@ -22,7 +22,8 @@ must not be renamed automatically.
 
 | ID | Domain | Title | Release | Completed | Successors | Archive | State |
 |---|---|---|---|---|---|---|---|
-| 2026-07-28-1408-UX-001 | UX | Idea Storm Lab portfolio menu and page |  | 2026-07-28 | - | [archive](outputs/archive/2026-07-28-1408-UX-001/) | [STATE](work-items/2026-07-28-1408-UX-001-idea-storm-lab-portfolio-page/STATE.md) |
+| 2026-07-28-1408-UX-001 | UX | Idea Storm Lab portfolio menu and page |  | 2026-07-28 | [2026-07-29-1417-UX-001](work-items/2026-07-29-1417-UX-001-dify-workflow-portfolio-page/STATE.md) | [archive](outputs/archive/2026-07-28-1408-UX-001/) | [STATE](work-items/2026-07-28-1408-UX-001-idea-storm-lab-portfolio-page/STATE.md) |
+| 2026-07-29-1417-UX-001 | UX | Dify workflow orchestration portfolio page |  | 2026-07-29 |  |  | [STATE](work-items/2026-07-29-1417-UX-001-dify-workflow-portfolio-page/STATE.md) |
 
 ## Cancelled
 
