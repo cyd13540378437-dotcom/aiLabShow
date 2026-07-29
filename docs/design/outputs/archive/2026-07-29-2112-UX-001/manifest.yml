@@ -1,0 +1,18 @@
+schema_version: 1
+event_id: "2026-07-29-2112-UX-001"
+title: "Desktop flat project navigation"
+completion_approved_at: "2026-07-29T22:10:30+08:00"
+sealed_at: "2026-07-29T22:13:20+08:00"
+source_state: "../../../work-items/2026-07-29-2112-UX-001-desktop-flat-project-navigation/STATE.md"
+
+snapshot:
+  root: "snapshot/"
+  files:
+    - "snapshot/index.html"
+    - "snapshot/designharness-agent-mineral-light.html"
+    - "snapshot/idea-storm-lab.html"
+    - "snapshot/dify-workflow.html"
+    - "snapshot/docs/design/VISUAL_DESIGN.md"
+    - "snapshot/docs/design/work-items/2026-07-29-2112-UX-001-desktop-flat-project-navigation/REFERENCE_SELECTION.md"
+    - "snapshot/docs/design/work-items/2026-07-29-2112-UX-001-desktop-flat-project-navigation/STATE.md"
+    - "snapshot/docs/design/work-items/2026-07-29-2112-UX-001-desktop-flat-project-navigation/review.md"

@@ -1,12 +1,12 @@
 schema_version: 1
-updated_at: "2026-07-28T17:48:14+08:00"
+updated_at: "2026-07-29T22:13:20+08:00"
 
 current:
-  - id: "idea-storm-lab-portfolio"
-    title: "Idea Storm Lab portfolio page"
+  - id: "portfolio-entry-points"
+    title: "Yudi AI Lab portfolio entry points"
     type: "entry-point"
     path: "current/index.yml"
-    source_event: "2026-07-28-1408-UX-001"
+    source_event: "2026-07-29-2112-UX-001"
     status: "user-confirmed"
 
 archive:
@@ -16,3 +16,9 @@ archive:
     source_state: "../work-items/2026-07-28-1408-UX-001-idea-storm-lab-portfolio-page/STATE.md"
     status: "sealed"
     sealed_at: "2026-07-28T17:48:14+08:00"
+  - event_id: "2026-07-29-2112-UX-001"
+    title: "Desktop flat project navigation"
+    path: "archive/2026-07-29-2112-UX-001/"
+    source_state: "../work-items/2026-07-29-2112-UX-001-desktop-flat-project-navigation/STATE.md"
+    status: "sealed"
+    sealed_at: "2026-07-29T22:13:20+08:00"
