@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Yudi AI Lab · 三套配色全站决策板</title>
+  <style>
+    * { box-sizing: border-box; }
+    :root { color-scheme: dark; font-family: "Avenir Next","PingFang SC","Microsoft YaHei",sans-serif; }
+    body { margin:0; background:#0c0e0d; color:#f3f0e8; }
+    a { color:inherit; text-decoration:none; }
+    .masthead { width:min(1480px,calc(100% - 48px)); margin:auto; padding:72px 0 48px; }
+    .eyebrow { color:#8ed8b8; font:700 12px/1.2 ui-monospace,monospace; letter-spacing:.16em; }
+    h1 { max-width:920px; margin:20px 0 18px; font-size:clamp(42px,6vw,84px); line-height:.94; letter-spacing:-.055em; }
+    .intro { max-width:760px; color:#a9ada8; font-size:17px; line-height:1.75; }
+    .legend { display:flex; gap:18px; margin-top:32px; color:#7e8580; font:600 12px/1.4 ui-monospace,monospace; }
+    .legend b { color:#f3f0e8; }
+    .scheme { padding:52px max(24px,calc((100vw - 1480px)/2)); background:
+      radial-gradient(circle at 8% 0%, color-mix(in srgb,var(--scheme-accent) 18%,transparent),transparent 32%),
+      radial-gradient(circle at 94% 12%, color-mix(in srgb,var(--scheme-secondary) 14%,transparent),transparent 28%),
+      var(--scheme-bg); color:var(--scheme-ink); border-top:1px solid color-mix(in srgb,var(--scheme-ink) 16%,transparent); }
+    .scheme-header { display:grid; grid-template-columns:72px minmax(0,1fr) auto; gap:22px; align-items:start; margin-bottom:28px; }
+    .scheme-number { color:var(--scheme-accent); font:700 16px/1 ui-monospace,monospace; padding-top:9px; }
+    .scheme-copy p { margin:0 0 8px; color:var(--scheme-accent); font:700 11px/1 ui-monospace,monospace; letter-spacing:.14em; }
+    .scheme-copy h2 { margin:0; font-size:clamp(34px,4vw,58px); letter-spacing:-.045em; }
+    .scheme-copy span { display:block; max-width:760px; margin-top:10px; color:color-mix(in srgb,var(--scheme-ink) 68%,transparent); line-height:1.65; }
+    .swatches { display:flex; gap:7px; padding-top:8px; }
+    .swatches i { width:34px; height:34px; border-radius:50%; background:var(--swatch); border:1px solid color-mix(in srgb,var(--scheme-ink) 22%,transparent); box-shadow:0 0 0 4px color-mix(in srgb,var(--scheme-paper) 68%,transparent); }
+    .page-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; }
+    .page-card { overflow:hidden; border:1px solid color-mix(in srgb,var(--scheme-ink) 17%,transparent); border-radius:12px; background:color-mix(in srgb,var(--scheme-paper) 88%,transparent); box-shadow:0 22px 54px color-mix(in srgb,#000 18%,transparent); }
+    .preview { display:block; overflow:hidden; aspect-ratio:16/10; background:var(--scheme-paper); }
+    .preview img { width:100%; height:100%; object-fit:cover; object-position:top; transition:transform .24s ease; }
+    .preview:hover img { transform:scale(1.018); }
+    .page-meta { display:flex; align-items:center; justify-content:space-between; gap:16px; padding:16px 17px 18px; }
+    .page-meta strong,.page-meta span { display:block; }
+    .page-meta strong { font-size:16px; }
+    .page-meta span { margin-top:4px; color:color-mix(in srgb,var(--scheme-ink) 58%,transparent); font-size:12px; }
+    .open-link { flex:none; border:1px solid color-mix(in srgb,var(--scheme-accent) 35%,transparent); border-radius:999px; padding:9px 12px; color:var(--scheme-accent); font-size:12px; font-weight:700; }
+    footer { padding:30px 24px 42px; text-align:center; color:#727874; font-size:12px; }
+    @media (max-width:900px) {
+      .masthead { width:min(100% - 30px,1480px); padding:48px 0 34px; }
+      .scheme { padding:38px 15px; }
+      .scheme-header { grid-template-columns:44px 1fr; }
+      .swatches { grid-column:2; }
+      .page-grid { grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header class="masthead">
+    <p class="eyebrow">YUDI AI LAB / COLORWAY DECISION SUITE</p>
+    <h1>三套配色，<br>九个真实页面。</h1>
+    <p class="intro">不再只看 DesignHarnessAgent。横向比较同一配色能否稳定覆盖长篇叙事、创意工作台和高密度工作流；纵向比较同一作品在三套色彩系统下的气质变化。</p>
+    <div class="legend"><span><b>横向</b> 同一方案 × 三个作品</span><span><b>纵向</b> 同一作品 × 三套方案</span></div>
+  </header>
+  <main><section class="scheme" style="--scheme-bg:#07100C;--scheme-paper:#0C1511;--scheme-ink:#F3F0E8;--scheme-accent:#8ED8B8;--scheme-secondary:#2E7C8A">
+        <header class="scheme-header">
+          <div class="scheme-number">01</div>
+          <div class="scheme-copy">
+            <p>COLOR SYSTEM</p>
+            <h2>夜幕极光</h2>
+            <span>近黑绿正文面配青绿与深海蓝边缘光，测试暗色方案在叙事页、创意工具和高密度工作流中的一致性。</span>
+          </div>
+          <div class="swatches" aria-label="夜幕极光色板"><i style="--swatch:#07100C" title="#07100C"></i><i style="--swatch:#0C1511" title="#0C1511"></i><i style="--swatch:#8ED8B8" title="#8ED8B8"></i><i style="--swatch:#2E7C8A" title="#2E7C8A"></i><i style="--swatch:#F3F0E8" title="#F3F0E8"></i></div>
+        </header>
+        <div class="page-grid"><article class="page-card">
+            <a class="preview" href="DesignHarnessAgent-night-aurora.html" aria-label="打开 DesignHarnessAgent · 夜幕极光">
+              <img src="previews/design-harness-night-aurora-hero.png" alt="DesignHarnessAgent · 夜幕极光 首屏预览" loading="lazy">
+            </a>
+            <div class="page-meta">
+              <div><strong>DesignHarnessAgent</strong><span>长篇产品叙事与系统架构</span></div>
+              <a class="open-link" href="DesignHarnessAgent-night-aurora.html">打开完整页 <span aria-hidden="true">↗</span></a>
+            </div>
+          </article><article class="page-card">
+            <a class="preview" href="IdeaStormLab-night-aurora.html" aria-label="打开 Idea Storm Lab · 夜幕极光">
+              <img src="previews/idea-storm-night-aurora-hero.png" alt="Idea Storm Lab · 夜幕极光 首屏预览" loading="lazy">
+            </a>
+            <div class="page-meta">
+              <div><strong>Idea Storm Lab</strong><span>创意工作台、便签与视觉证据</span></div>
+              <a class="open-link" href="IdeaStormLab-night-aurora.html">打开完整页 <span aria-hidden="true">↗</span></a>
+            </div>
+          </article><article class="page-card">
+            <a class="preview" href="DutyAnalysisWorkflow-night-aurora.html" aria-label="打开 履职分析工作流 · 夜幕极光">
+              <img src="previews/duty-workflow-night-aurora-hero.png" alt="履职分析工作流 · 夜幕极光 首屏预览" loading="lazy">
+            </a>
+            <div class="page-meta">
+              <div><strong>履职分析工作流</strong><span>高密度流程、节点与分析结果</span></div>
+              <a class="open-link" href="DutyAnalysisWorkflow-night-aurora.html">打开完整页 <span aria-hidden="true">↗</span></a>
+            </div>
+          </article></div>
+      </section><section class="scheme" style="--scheme-bg:#DDD9D0;--scheme-paper:#F6F2E9;--scheme-ink:#171D23;--scheme-accent:#244E6B;--scheme-secondary:#A94D3A">
+        <header class="scheme-header">
+          <div class="scheme-number">02</div>
+          <div class="scheme-copy">
+            <p>COLOR SYSTEM</p>
+            <h2>暮色档案</h2>
+            <span>暖纸白、普鲁士蓝、朱砂与黄铜形成冷暖秩序，测试复杂内容里既专业又有作者感的上限。</span>
+          </div>
+          <div class="swatches" aria-label="暮色档案色板"><i style="--swatch:#DDD9D0" title="#DDD9D0"></i><i style="--swatch:#F6F2E9" title="#F6F2E9"></i><i style="--swatch:#171D23" title="#171D23"></i><i style="--swatch:#244E6B" title="#244E6B"></i><i style="--swatch:#A94D3A" title="#A94D3A"></i></div>
+        </header>
+        <div class="page-grid"><article class="page-card">
+            <a class="preview" href="DesignHarnessAgent-twilight-archive.html" aria-label="打开 DesignHarnessAgent · 暮色档案">
+              <img src="previews/design-harness-twilight-archive-hero.png" alt="DesignHarnessAgent · 暮色档案 首屏预览" loading="lazy">
+            </a>
+            <div class="page-meta">
+              <div><strong>DesignHarnessAgent</strong><span>长篇产品叙事与系统架构</span></div>
+              <a class="open-link" href="DesignHarnessAgent-twilight-archive.html">打开完整页 <span aria-hidden="true">↗</span></a>
+            </div>
+          </article><article class="page-card">
+            <a class="preview" href="IdeaStormLab-twilight-archive.html" aria-label="打开 Idea Storm Lab · 暮色档案">
+              <img src="previews/idea-storm-twilight-archive-hero.png" alt="Idea Storm Lab · 暮色档案 首屏预览" loading="lazy">
+            </a>
+            <div class="page-meta">
+              <div><strong>Idea Storm Lab</strong><span>创意工作台、便签与视觉证据</span></div>
+              <a class="open-link" href="IdeaStormLab-twilight-archive.html">打开完整页 <span aria-hidden="true">↗</span></a>
+            </div>
+          </article><article class="page-card">
+            <a class="preview" href="DutyAnalysisWorkflow-twilight-archive.html" aria-label="打开 履职分析工作流 · 暮色档案">
+              <img src="previews/duty-workflow-twilight-archive-hero.png" alt="履职分析工作流 · 暮色档案 首屏预览" loading="lazy">
+            </a>
+            <div class="page-meta">
+              <div><strong>履职分析工作流</strong><span>高密度流程、节点与分析结果</span></div>
+              <a class="open-link" href="DutyAnalysisWorkflow-twilight-archive.html">打开完整页 <span aria-hidden="true">↗</span></a>
+            </div>
+          </article></div>
+      </section><section class="scheme" style="--scheme-bg:#E1DAD0;--scheme-paper:#F8F2E8;--scheme-ink:#1B1815;--scheme-accent:#A74735;--scheme-secondary:#B18A4A">
+        <header class="scheme-header">
+          <div class="scheme-number">03</div>
+          <div class="scheme-copy">
+            <p>COLOR SYSTEM</p>
+            <h2>朱砂暮金</h2>
+            <span>朱砂负责判断和行动，暮金负责稀缺高光，测试暖调方案能否覆盖专业工具而不滑向营销感。</span>
+          </div>
+          <div class="swatches" aria-label="朱砂暮金色板"><i style="--swatch:#E1DAD0" title="#E1DAD0"></i><i style="--swatch:#F8F2E8" title="#F8F2E8"></i><i style="--swatch:#1B1815" title="#1B1815"></i><i style="--swatch:#A74735" title="#A74735"></i><i style="--swatch:#B18A4A" title="#B18A4A"></i></div>
+        </header>
+        <div class="page-grid"><article class="page-card">
+            <a class="preview" href="DesignHarnessAgent-vermilion-dusk.html" aria-label="打开 DesignHarnessAgent · 朱砂暮金">
+              <img src="previews/design-harness-vermilion-dusk-hero.png" alt="DesignHarnessAgent · 朱砂暮金 首屏预览" loading="lazy">
+            </a>
+            <div class="page-meta">
+              <div><strong>DesignHarnessAgent</strong><span>长篇产品叙事与系统架构</span></div>
+              <a class="open-link" href="DesignHarnessAgent-vermilion-dusk.html">打开完整页 <span aria-hidden="true">↗</span></a>
+            </div>
+          </article><article class="page-card">
+            <a class="preview" href="IdeaStormLab-vermilion-dusk.html" aria-label="打开 Idea Storm Lab · 朱砂暮金">
+              <img src="previews/idea-storm-vermilion-dusk-hero.png" alt="Idea Storm Lab · 朱砂暮金 首屏预览" loading="lazy">
+            </a>
+            <div class="page-meta">
+              <div><strong>Idea Storm Lab</strong><span>创意工作台、便签与视觉证据</span></div>
+              <a class="open-link" href="IdeaStormLab-vermilion-dusk.html">打开完整页 <span aria-hidden="true">↗</span></a>
+            </div>
+          </article><article class="page-card">
+            <a class="preview" href="DutyAnalysisWorkflow-vermilion-dusk.html" aria-label="打开 履职分析工作流 · 朱砂暮金">
+              <img src="previews/duty-workflow-vermilion-dusk-hero.png" alt="履职分析工作流 · 朱砂暮金 首屏预览" loading="lazy">
+            </a>
+            <div class="page-meta">
+              <div><strong>履职分析工作流</strong><span>高密度流程、节点与分析结果</span></div>
+              <a class="open-link" href="DutyAnalysisWorkflow-vermilion-dusk.html">打开完整页 <span aria-hidden="true">↗</span></a>
+            </div>
+          </article></div>
+      </section></main>
+  <footer>所有预览均链接到完整、可交互的独立页面 · 原始正式页面保持不变</footer>
+</body>
+</html>
